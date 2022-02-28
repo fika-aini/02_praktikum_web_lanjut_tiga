@@ -49,3 +49,4 @@ Route::prefix('program')->group(function (){
     Route::redirect('/magang', 'https://www.educastudio.com/program/magang');
     Route::redirect('/kunjungan-industri', 'https://www.educastudio.com/program/kunjungan-industri');
 });
+Route::redirect('/about-us', 'https://www.educastudio.com/about-us');
