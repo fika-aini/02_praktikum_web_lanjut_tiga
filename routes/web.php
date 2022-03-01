@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\PageController;
 use Illuminate\Support\Facades\Route;
 
@@ -24,25 +25,9 @@ Route::prefix('category')->group(function (){
     Route::redirect('/riri-story-books', 'https://www.educastudio.com/category/riri-story-books');
     Route::redirect('/kolak-kids-songs', 'https://www.educastudio.com/category/kolak-kids-songs');
 });
-/*
-Route::prefix('news/{id?}')->group(function ($id){
-    if($id = null){
-        Route::redirect('/', 'https://www.educastudio.com/news');
-    }
-    if($id = 'berbagi'){
-        Route::redirect('/berbagi', 'https://www.educastudio.com/news/educa-studio-berbagi-untuk-warga-sekitarterdampak-covid-19');
-    }
-    
-});*/
-
-
-Route::prefix('news/{id?}')->group(function ($id = null){
-    Route::redirect('/', 'https://www.educastudio.com/news');
-    //Route::redirect('/educa-studio-berbagi-untuk-warga-sekitarterdampak-covid-19', 'https://www.educastudio.com/news/educa-studio-berbagi-untuk-warga-sekitarterdampak-covid-19');
-});
-Route::prefix('news/{name?}')->group(function ($name = 'berbagi'){
-    //Route::redirect('/', 'https://www.educastudio.com/news');
-    Route::redirect('/educa-studio-berbagi-untuk-warga-sekitarterdampak-covid-19', 'https://www.educastudio.com/news/educa-studio-berbagi-untuk-warga-sekitarterdampak-covid-19');
+Route::prefix('/news')->group(function (){
+    Route::redirect('/','https://www.educastudio.com/news');
+    Route::redirect('/educa-studio-berbagi-untuk-warga-sekitarterdampak-covid-19','https://www.educastudio.com/news/educa-studio-berbagi-untuk-warga-sekitarterdampak-covid-19');
 });
 Route::prefix('program')->group(function (){
     Route::redirect('/karir', 'https://www.educastudio.com/program/karir');
@@ -50,3 +35,7 @@ Route::prefix('program')->group(function (){
     Route::redirect('/kunjungan-industri', 'https://www.educastudio.com/program/kunjungan-industri');
 });
 Route::redirect('/about-us', 'https://www.educastudio.com/about-us');
+
+Route::resource('contact-us', ContactController::class)->only([
+    'index'
+]);
